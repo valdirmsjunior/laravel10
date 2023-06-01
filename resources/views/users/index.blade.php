@@ -3,22 +3,56 @@
 @section('title', 'Listagem de Usuarios')
  
 @section('content')
-<h1>Listagem de usuarios <a href="{{route('users.create')}}">(+)</a></h1>
+<h1 class="text-2x1 font-semibold leading-tigh py-2">
+    Listagem de usuarios 
+    <a href="{{route('users.create')}}" class="bg-blue-900 rounded-full text-white px-4 text-sm">(+)</a></h1>
 
-<form action="{{route('users.index')}}" method="get">
-    <input type="text" name="search" id="search" placeholder="Pesquisar"/>
-    <button>Pesquisar</button>
+<form action="{{route('users.index')}}" class="py-5" method="get">
+    <input type="text" name="search" id="search" placeholder="Pesquisar" class="px-1 py-1 rounded-md md:w-1/6 bg-gray-200 appearance-none border-solid"/>
+    <button class="px-1 py-1 rounded-md shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white ">
+        Pesquisar
+    </button>
 </form>
 
-<ul>
-    @foreach ($users as $user)
-        <li>
-            <p>Nome: {{$user->name}} - Email: {{$user->email}}
-                - | - <a href="{{ route('users.show', $user->id) }}">Detalhes</a>
-                - | - <a href="{{ route('users.edit', $user->id) }}">Editar</a>
-            </p>
-        </li>
-    @endforeach
-</ul>
+<table class="min-w-full leading-normal shadow-md rounded-lg overflow-hidden">
+    <thead>
+        <tr>
+            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left">
+                Nome
+            </th>
+            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left">
+                E-mail
+            </th>
+            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left">
+                Editar
+            </th>
+            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left">
+                Detalhes
+            </th>
+        </tr>
+    </thead>
+    <tbody >
+        @foreach ($users as $user)
+            <tr class="hover:bg-gray-300">
+                <td class="px-5 py-5 border-b border-white-200 bg-white-100 text-left">
+                    {{$user->name}}
+                </td>
+                <td class="px-5 py-5 border-b border-white-200 bg-white-100 text-left">
+                    {{$user->email}}
+                </td>
+                <td class="px-5 py-5 border-b border-white-200 bg-white-100 text-left  ">
+                    <a class="px-3 py-3 bg-cyan-500 hover:bg-cyan-600 rounded-full ring-2 ring-blue-500/50" 
+                        href="{{ route('users.edit', $user->id) }}">Editar
+                    </a>
+                </td>
+                <td class="px-5 py-5 border-b border-white-200 bg-white-100 text-left">
+                    <a class="px-3 py-3 bg-orange-300 hover:bg-cyan-600 rounded-full ring-2 ring-blue-500/50 "
+                         href="{{ route('users.show', $user->id) }}">Detalhes
+                    </a>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
 @endsection
