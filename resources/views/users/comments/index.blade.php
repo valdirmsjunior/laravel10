@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Listagem de Usuarios')
+@section('title', 'Comentarios do Usuario')
  
 @section('content')
 <h1 class="text-2x1 font-semibold leading-tigh py-2">
-    Listagem de usuarios 
-    <a href="{{route('users.create')}}" class="bg-blue-900 rounded-full text-white px-4 text-sm">(+)</a></h1>
+    Comentários do usuario {{$user->name}} 
+    <a href="{{route('comments.create', $user->id)}}" class="bg-blue-900 rounded-full text-white px-4 text-sm">(+)</a></h1>
 
 <form action="{{route('users.index')}}" class="py-5" method="get">
     <input type="text" name="search" id="search" placeholder="Pesquisar" class="px-1 py-1 rounded-md md:w-1/6 bg-gray-200 appearance-none border-solid"/>
@@ -18,44 +18,28 @@
     <thead>
         <tr>
             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left">
-                Nome
+                Comentários (0)
             </th>
             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left">
-                E-mail
+                Visivel
             </th>
             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left">
-                Editar
-            </th>
-            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left">
-                Detalhes
-            </th>
-            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left">
-                Comentários
+                EDITAR
             </th>
         </tr>
     </thead>
     <tbody >
-        @foreach ($users as $user)
+        @foreach ($comments as $comment)
             <tr class="hover:bg-gray-300">
                 <td class="px-5 py-5 border-b border-white-200 bg-white-100 text-left">
-                    {{$user->name}}
+                    {{$comment->body}}
                 </td>
                 <td class="px-5 py-5 border-b border-white-200 bg-white-100 text-left">
-                    {{$user->email}}
+                    {{$comment->visible ? 'SIM': 'NÃO'}} 
                 </td>
                 <td class="px-5 py-5 border-b border-white-200 bg-white-100 text-left  ">
                     <a class="px-3 py-3 bg-cyan-500 hover:bg-cyan-600 rounded-full ring-2 ring-blue-500/50" 
                         href="{{ route('users.edit', $user->id) }}">Editar
-                    </a>
-                </td>
-                <td class="px-5 py-5 border-b border-white-200 bg-white-100 text-left">
-                    <a class="px-3 py-3 bg-orange-300 hover:bg-cyan-600 rounded-full ring-2 ring-blue-500/50 "
-                         href="{{ route('users.show', $user->id) }}">Detalhes
-                    </a>
-                </td>
-                <td class="px-5 py-5 border-b border-white-200 bg-white-100 text-left">
-                    <a class="px-3 py-3 bg-orange-300 hover:bg-cyan-600 rounded-full ring-2 ring-blue-500/50 "
-                         href="{{ route('comments.index', $user->id) }}">Comentários (0)
                     </a>
                 </td>
             </tr>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     UserController
 };
+use App\Http\Controllers\Admin\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,10 @@ use App\Http\Controllers\{
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/users/{id}/comments', [CommentController::class, 'index'])->name('comments.index');
+Route::get('/users/{id}/comments/create', [CommentController::class, 'create'])->name('comments.create');
+Route::post('/users/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
