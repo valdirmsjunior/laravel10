@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\CommentController;
 Route::get('/users/{id}/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::get('/users/{id}/comments/create', [CommentController::class, 'create'])->name('comments.create');
 Route::post('/users/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/users/{user}/comments/{id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+Route::put('/users/{id}/comments/update', [CommentController::class, 'update'])->name('comments.update');
 
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
