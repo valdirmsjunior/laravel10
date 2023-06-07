@@ -8,7 +8,7 @@
         <a href="{{ route('comments.create', $user->id) }}" class="rounded-full bg-blue-900 px-4 text-sm text-white">(+)</a>
     </h1>
 
-    <form action="{{ route('users.index') }}" class="py-5" method="get">
+    <form action="{{ route('comments.index', $user->id) }}" class="py-5" method="get">
         <input type="text" name="search" id="search" placeholder="Pesquisar"
             class="appearance-none rounded-md border-solid bg-gray-200 px-1 py-1 md:w-1/6" />
         <button
