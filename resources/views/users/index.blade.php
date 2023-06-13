@@ -7,7 +7,6 @@
         Listagem de usuarios
         <a href="{{ route('users.create') }}" class="rounded-full bg-blue-900 px-4 text-sm text-white">(+)</a>
     </h1>
-
     <form action="{{ route('users.index') }}" class="py-5" method="get">
         <input type="text" name="search" id="search" placeholder="Pesquisar"
             class="appearance-none rounded-md border-solid bg-gray-200 px-1 py-1 md:w-1/6" />
@@ -20,6 +19,9 @@
     <table class="table-auto overflow-hidden rounded-lg leading-normal shadow-md">
         <thead>
             <tr>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left">
+                    Foto
+                </th>
                 <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left">
                     Nome
                 </th>
@@ -40,6 +42,13 @@
         <tbody>
             @foreach ($users as $user)
                 <tr class="hover:bg-gray-300">
+                    <td class="border-white-200 bg-white-100 border-b px-5 py-5 text-left">
+                        @if ($user->image)
+                            <img src="{{ url("storage/{$user->image}") }}" class="w-20 object-cover">
+                        @else
+                            <img src="{{ url('images/laravel.png') }}" alt="{{ $user->name }}" class="w-20 object-cover">
+                        @endif
+                    </td>
                     <td class="border-white-200 bg-white-100 border-b px-5 py-5 text-left">
                         {{ $user->name }}
                     </td>
